@@ -1,0 +1,9 @@
+https://JoelJonassi@bitbucket.org/repo-aad/repo_aad.git
+
+git clone link
+git fecth link
+git pull link
+git add .
+git commit -m "message"
+or git commit -am "message"
+git push link
