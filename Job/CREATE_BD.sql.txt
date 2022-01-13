@@ -1,0 +1,138 @@
+create table comercio.cliente(
+		cliente_id int not null check(cliente_id > 0),
+		nome varchar(40) not null,
+		nif varchar(40) not null,
+		data_nas date not null,
+		morada varchar(70) not null,
+		localidade  varchar(20) not null,
+		contacto int not null,
+		e_mail varchar(40),
+		constraint cli_pk primary key( cliente_id )
+);
+		
+	create table comercio.produtor(
+		produtor_id int not null check (produtor_id > 0),
+		nome varchar(60) not null,
+		morada varchar(100) not null,
+		localidade varchar(20) not null,
+		contacto int not null,
+		e_mail varchar(255) ,
+		constraint pror_pk primary key( produtor_id ));
+		
+	create table comercio.administrador(
+		admin_id int not null check(admin_id > 0),
+		nome varchar(60) not null,
+		morada varchar(60) not null,
+		localidade varchar(60) not null,
+		contacto int not null,
+		e_mail varchar(60),
+		constraint admin_pk primary key( admin_id ));
+	
+	create table comercio.c_produtor(
+		conta_p_id int not null check( conta_p_id > 0 ),
+		produtor_id int not null check( produtor_id > 0 ),
+		username varchar(255) not null,
+		senha varchar(255) not null,
+		constraint cp_pk primary key( conta_p_id, produtor_id ));
+	
+	create table comercio.c_cliente(
+		conta_c_id int not null check( conta_c_id > 0 ),
+		cliente_id int not null check( cliente_id > 0 ),
+		username varchar(255) not null,
+		senha varchar(255) not null,
+		constraint cc_pk primary key( conta_c_id, cliente_id ));
+	
+	create table comercio.c_admin(
+		conta_ad_id int not null check( conta_ad_id > 0 ),
+		admin_id int not null check( admin_id > 0 ),
+		username varchar(255) not null,
+		senha varchar(255) not null,
+		constraint ca_pk primary key( conta_ad_id, admin_id ));
+	
+	create table comercio.produto(
+		cod_prod int not null check( cod_prod > 0 ),
+		categoria_id int not null check( categoria_id > 0 ),
+		nome_prod varchar(60) not null,
+		preco int not null,		
+		constraint prodt_pk primary key( cod_prod ));
+	
+	create table comercio.categoria(
+		categoria_id int not null check( categoria_id > 0 ),
+		nome varchar(255) not null check(nome in('leguminosas e oleginosas', 'vegetais', 'frutas', 'doces' )),
+		detalhes varchar,
+		constraint catg_pk primary key( categoria_id ));
+	
+	create table comercio.valor(
+		valor_id int not null check( valor_id > 0 ),
+		cod_prod int not null check( cod_prod > 0 ), 
+		preco int,
+		constraint val_pk primary key( valor_id, cod_prod ));
+	
+	create table comercio.entidade_associativa(
+		produtor_id int not null,
+		cod_prod int not null,
+		qt int not null,
+		preco int not null,
+		constraint ea_pk primary key( produtor_id, cod_prod ));
+	
+	create table comercio.entidade_associativa2(
+		encomenda_num int not null check( encomenda_num > 0 ),
+		produtor_id int not null check( produtor_id > 0 ),
+		cod_prod int not null check( cod_prod > 0 ),
+		qt int not null,
+		preco int not null,
+		constraint ea2_pk primary key( encomenda_num,produtor_id,cod_prod ));
+	
+	create table comercio.encomenda(
+		cliente_id int not null check( cliente_id > 0 ),
+		encomenda_num int not null check( encomenda_num > 0 ),
+		data_en date not null,
+		hora time, 
+		qtd int not null,
+		valor int not null,
+		detalhes varchar,
+		constraint encome_pk primary key( encomenda_num, cliente_id ),
+		constraint encomen_pk unique(encomenda_num));
+	
+	create table comercio.ordem_pagamento(
+		ordem_pag_num int not null check( ordem_pag_num > 0 ),
+		encomenda_num int not null check( encomenda_num > 0 ),
+		valor int not null,
+		modo_pagamento varchar(60),
+		constraint ord_pag_pk primary key( ordem_pag_num, encomenda_num ),
+		constraint ord_paga_pk unique(ordem_pag_num)
+	);
+		
+	create table comercio.processo_envio_recolha(
+		processo_num int not null check( processo_num > 0 ),
+		admin_id int not null check( admin_id > 0 ),
+		ordem_pag_num int not null check( ordem_pag_num > 0 ),
+		estado varchar(60),		
+		constraint envr_pk primary key( processo_num, ordem_pag_num, admin_id )	);
+	
+	create table comercio.fatura_recibo(
+		fatura_num int not null check( fatura_num > 0 ),
+		ordem_pag_num int not null check( ordem_pag_num > 0 ),
+		nome varchar,
+		constraint fat_pk primary key( fatura_num ));
+
+alter table comercio.c_produtor add constraint c_pr_fk foreign key( produtor_id ) references comercio.produtor( produtor_id );
+alter table comercio.c_cliente add constraint c_cl_fk foreign key( cliente_id ) references comercio.cliente( cliente_id );
+alter table comercio.c_admin add constraint c_ad_fk foreign key( admin_id ) references comercio.administrador( admin_id);
+alter table comercio.produto add constraint categ_fk foreign key( categoria_id ) references comercio.categoria( categoria_id );
+alter table comercio.valor add constraint val_fk foreign key( cod_prod ) references comercio.produto( cod_prod );
+alter table comercio.entidade_associativa add constraint ea_prodtor_fk foreign key( produtor_id ) references comercio.produtor(produtor_id);
+alter table comercio.entidade_associativa add constraint ea_prod_fk foreign key( cod_prod ) references comercio.produto( cod_prod );
+alter table comercio.entidade_associativa2 add constraint ea2_enc_fk foreign key( encomenda_num ) references comercio.encomenda( encomenda_num );
+alter table comercio.entidade_associativa2 add constraint ea2_prodtor_fk foreign key( produtor_id ) references comercio.produtor( produtor_id );
+alter table comercio.entidade_associativa2 add constraint ea2_prod_fk foreign key( cod_prod ) references comercio.produto( cod_prod );
+alter table comercio.encomenda add constraint enc_fk foreign key( cliente_id ) references comercio.cliente( cliente_id );
+alter table comercio.ordem_pagamento add constraint enc_fk foreign key( encomenda_num ) references comercio.encomenda( encomenda_num);
+alter table comercio.processo_envio_recolha add constraint ord_pag_fk foreign key( ordem_pag_num ) references comercio.ordem_pagamento(ordem_pag_num);
+alter table comercio.processo_envio_recolha add constraint admin_id_fk foreign key( admin_id ) references comercio.administrador(admin_id);
+alter table comercio.fatura_recibo  add constraint ords_pag_fk foreign key( ordem_pag_num) references comercio.ordem_pagamento(ordem_pag_num);
+
+create index cl_nom_i on comercio.cliente(cliente_id);
+create index enc_cod_i on comercio.encomenda(encomenda_num);
+create index env_cod_i on comercio.processo_envio_recolha(processo_num);
+		

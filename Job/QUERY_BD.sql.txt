@@ -1,0 +1,46 @@
+
+----Lista com o nome das encomendas e os clientes que a fizeram;----
+
+select *
+from comercio.encomenda
+
+
+select nom_disc nome, count(mat_alu) qtd
+from pratica.turma_matriculada tm inner join pratica.disciplina d using (cod_disc)
+group by d.cod_disc
+order by qtd, nome;
+
+
+----Lista com os as categorias e os produtos;---------------
+
+select nom_curso, nom_prof
+from pratica.professor p inner join pratica.curso c on p.cod_prof = c.cod_coord;
+
+
+----Lista com o nome dos clientes que encomenda muitos vegetais do tipo couve"-----
+
+select d1.nom_disc, d2.nom_disc
+from pratica.pre_requisito pr inner join pratica.disciplina d1 using (cod_disc)
+     inner join pratica.disciplina d2 on d2.cod_disc=pr.cod_disc_pre
+where UPPER(d2.nom_disc) like 'ADMINISTRACAO I';
+
+
+select d2.nom_disc, d1.nom_disc
+from pratica.pre_requisito pr 
+inner join pratica.disciplina d1 using (cod_disc)
+    inner join pratica.disciplina d2 on d2.cod_disc = pr.cod_disc_pre
+where lower(d1.nom_disc) = 'desenvolvimento socio economico';
+
+
+---------------------------------------------------------------------------------
+select * from pratica.disciplina where UPPER(nom_disc) like 'ADMINISTRACAO I';
+select * from pratica.disciplina where cod_disc=200657;
+select * from pratica.disciplina where cod_disc=200746;
+------------------------------------------------------------------------
+
+
+----O adiministrador que acompanhou uma determinada compra -----
+
+select cod_disc, nom_disc
+from pratica.pre_requisito pr inner join pratica.disciplina d using (cod_disc)
+where cod_disc_pre = 200657;

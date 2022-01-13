@@ -1,0 +1,15 @@
+drop table comercio.processo_envio_recolha;
+drop table comercio.fatura_recibo; 
+drop table comercio.ordem_pagamento;
+drop table comercio.entidade_associativa;
+drop table comercio.entidade_associativa2;
+drop table comercio.c_cliente;
+drop table comercio.c_produtor;
+drop table comercio.c_admin;
+drop table comercio.produtor;
+drop table comercio.encomenda;
+drop table comercio.cliente;
+drop table comercio.administrador;
+drop table comercio.valor;
+drop table comercio.produto;
+drop table comercio.categoria;
