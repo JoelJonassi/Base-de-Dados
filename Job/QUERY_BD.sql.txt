@@ -1,46 +1,65 @@
-
-----Lista com o nome das encomendas e os clientes que a fizeram;----
-
-select *
-from comercio.encomenda
-
-
-select nom_disc nome, count(mat_alu) qtd
-from pratica.turma_matriculada tm inner join pratica.disciplina d using (cod_disc)
-group by d.cod_disc
-order by qtd, nome;
-
-
-----Lista com os as categorias e os produtos;---------------
-
-select nom_curso, nom_prof
-from pratica.professor p inner join pratica.curso c on p.cod_prof = c.cod_coord;
-
-
-----Lista com o nome dos clientes que encomenda muitos vegetais do tipo couve"-----
-
-select d1.nom_disc, d2.nom_disc
-from pratica.pre_requisito pr inner join pratica.disciplina d1 using (cod_disc)
-     inner join pratica.disciplina d2 on d2.cod_disc=pr.cod_disc_pre
-where UPPER(d2.nom_disc) like 'ADMINISTRACAO I';
-
-
-select d2.nom_disc, d1.nom_disc
-from pratica.pre_requisito pr 
-inner join pratica.disciplina d1 using (cod_disc)
-    inner join pratica.disciplina d2 on d2.cod_disc = pr.cod_disc_pre
-where lower(d1.nom_disc) = 'desenvolvimento socio economico';
-
-
----------------------------------------------------------------------------------
-select * from pratica.disciplina where UPPER(nom_disc) like 'ADMINISTRACAO I';
-select * from pratica.disciplina where cod_disc=200657;
-select * from pratica.disciplina where cod_disc=200746;
+1-----Lista com o nome dos clientes as suas encomendas----
+select cliente_id, nome, nome_prod
+from(select cliente_id, nome, morada, encomenda_num
+	from comercio.encomenda e inner join comercio.cliente c using (cliente_id)) tb 
+	inner join comercio.entidade_associativa2 ea2 using(encomenda_num) inner join comercio.produto pr using(cod_prod)
+2--------------------------------------------------------------------
+----As encomendas que serão entregues no mesmo dia, realizadas antes das 15:00 pm
+select c.nome as cliente , e.encomenda_num as encomenda
+from comercio.encomenda e inner join comercio.cliente c using(cliente_id)
+where hora < '15:00:00' and data_en = current_date
 ------------------------------------------------------------------------
 
+3----Lista com os as categorias e os produtos;---------------
+select c.nome as categoria, p.nome_prod as produto
+from comercio.categoria c inner join comercio.produto p using (categoria_id)
+order by c.nome
+----------------------------------------------------------
 
-----O adiministrador que acompanhou uma determinada compra -----
+4 ----------as as categorias de produtos, os produtos dos um determinado produtor
+select pr.nome as produtor, c.nome as categoria, p.nome_prod as produto
+from comercio.categoria c inner join comercio.produto p using(categoria_id)
+	inner join comercio.entidade_associativa2 ea2 using (cod_prod)
+	inner join comercio.produtor pr using(produtor_id)
 
-select cod_disc, nom_disc
-from pratica.pre_requisito pr inner join pratica.disciplina d using (cod_disc)
-where cod_disc_pre = 200657;
+5----Lista com o nome dos clientes que encomendam vegetais"-----
+
+select c.nome as categoria, cl.nome as cliente, ea2.qt as quantidade
+from comercio.categoria c inner join comercio.produto p using (categoria_id)
+     inner join comercio.entidade_associativa2 ea2 using (cod_prod)
+	 inner join comercio.encomenda en using(encomenda_num) inner join comercio.cliente cl using(cliente_id)
+where lower(c.nome) like 'vegetais';
+
+6 -------------os produtos mais vendidos
+
+	select count(p.cod_prod), p.nome_prod
+	from comercio.produto p inner join comercio.entidade_associativa2 ea using(cod_prod) 
+	inner join comercio.encomenda en using(encomenda_num)
+	group by p.cod_prod
+
+
+
+7-------O produto com mais clientes a comprar -------------------------
+
+select tb.nome_prod as nome_produto, count(cl.cliente_id) as quantidade_cliente
+	from (select p.nome_prod, e.cliente_id
+	from comercio.encomenda e inner join comercio.entidade_associativa2 ea using(encomenda_num) 
+	inner join comercio.produto p using (cod_prod)) tb inner join comercio.cliente cl using (cliente_id)
+	group by(tb.nome_prod) 
+	having count(cl.cliente_id) in (select  max(t.quantidade_cliente)
+									from(select tb.nome_prod as nome_produto, count(cl.cliente_id) as quantidade_cliente
+									from (select p.nome_prod, e.cliente_id
+									from comercio.encomenda e inner join comercio.entidade_associativa2 ea using(encomenda_num)
+									inner join comercio.produto p using (cod_prod)) tb inner join comercio.cliente cl using (cliente_id)
+									group by(tb.nome_prod)) t)
+
+
+8---ordem de pagamento que não tem fatura assoaciada --- 
+--oracle minus
+select ordem_pag_num
+from comercio.ordem_pagamento 
+except 
+select op.ordem_pag_num
+from comercio.ordem_pagamento op inner join comercio.fatura_recibo fr using(ordem_pag_num)
+
+

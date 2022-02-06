@@ -1,53 +1,97 @@
 --concatenete insert into table(A,B,C,D) values(';')
-
 insert into comercio.administrador( admin_id, nome, morada, localidade, contacto, e_mail ) values ( 1001, 'Jonassi', 'Rua Lisboa', 'Vila Nova Gaia', 936159188, 'joel14jonassi.jj@gmail.com');  
 insert into comercio.c_admin(conta_ad_id, admin_id, username, senha) values(2001, 1001, 'Jonassi1' , '1234');
 insert into comercio.administrador( admin_id, nome, morada, localidade, contacto ) values ( 1002, 'Jorge', 'Rua Lisboa', 'Vila Nova Gaia', 93449188);  
 insert into comercio.c_admin(conta_ad_id, admin_id, username, senha) values(2002, 1002, 'jorge1' , '1237');
+-------------------
 
-insert into comercio.cliente( cliente_id, nome, nif, data_nas, morada, localidade, contacto, e_mail) values ( 3001, 'Carlos', 287060357, to_date( '20/01/1998', 'DD/MM/YYYY' ), 'Rua Porto', 'Barcelos', 93615979, 'jj@gmail.com');                              
+insert into comercio.cliente( cliente_id, nome, nif, data_nas, morada, localidade, contacto, e_mail) values ( 3001, 'Carlos', 287060357, to_date( '20/01/1998', 'DD/MM/YYYY' ), 'Rua Porto', 'Barcelos', 93615699, 'jj@gmail.com');                              
 insert into comercio.c_cliente(conta_c_id, cliente_id, username, senha) values(4001, 3001, 'carlos1' , '1234');
-insert into comercio.cliente( cliente_id, nome, nif, data_nas, morada, localidade, contacto) values ( 3002, 'Filipe', 280001357, to_date( '28/09/1985', 'DD/MM/YYYY' ), 'Rua Braga','bragavil', 93615979);                              
+insert into comercio.cliente( cliente_id, nome, nif, data_nas, morada, localidade, contacto) values ( 3002, 'Filipe', 280001357, to_date( '28/09/1985', 'DD/MM/YYYY' ), 'Rua Braga','bragavil', 93614579);                              
 insert into comercio.c_cliente(conta_c_id, cliente_id, username, senha) values(4002, 3002, 'filipe1' , '1234');
+----
+insert into comercio.cliente( cliente_id, nome, nif, data_nas, morada, localidade, contacto, e_mail) values ( 3003, 'Zaca', 28160357, to_date( '20/01/1973', 'DD/MM/YYYY' ), 'Rua Lamba', 'Riba de AVe', 93615912, 'Zaca@gmail.com');                              
+insert into comercio.c_cliente(conta_c_id, cliente_id, username, senha) values(4003, 3003, 'Zaca1' , '1234');
+insert into comercio.cliente( cliente_id, nome, nif, data_nas, morada, localidade, contacto) values ( 3004, 'Fimba', 28761357, to_date( '28/09/1765', 'DD/MM/YYYY' ), 'Rua Fonseca','Vila Nova de Gaia', 93615914);                              
+insert into comercio.c_cliente(conta_c_id, cliente_id, username, senha) values(4004, 3004, 'fimba' , '1234');
 
-insert into comercio.produtor( produtor_id, nome, morada, localidade,contacto, e_mail ) values ( 5001, 'Luís', 'Rua Lisboa', 'Vila Nova Gaia', 93644188, 'Luis.jj@gmail.com' );                         
+insert into comercio.cliente( cliente_id, nome, nif, data_nas, morada, localidade, contacto, e_mail) values ( 3005, 'Catarina', 287033207, to_date( '20/05/1998', 'DD/MM/YYYY' ), 'Rua Portalegre', 'Viana do Castelo', 93615992, 'cata@gmail.com');                              
+insert into comercio.c_cliente(conta_c_id, cliente_id, username, senha) values(4005, 3005, 'Catarin' , '1234');
+insert into comercio.cliente( cliente_id, nome, nif, data_nas, morada, localidade, contacto) values ( 3006, 'Filipa', 280001357, to_date( '28/09/2000', 'DD/MM/YYYY' ), 'Rua labareda','Bragança', 93615979);                              
+insert into comercio.c_cliente(conta_c_id, cliente_id, username, senha) values(4006, 3006, 'filipa' , '1234');
+
+insert into comercio.cliente( cliente_id, nome, nif, data_nas, morada, localidade, contacto, e_mail) values ( 3007, 'Katia', 287060357, to_date( '20/11/1998', 'DD/MM/YYYY' ), 'Rua fornolenha', 'Barcelos', 93615979, 'jj@gmail.com');                              
+insert into comercio.c_cliente(conta_c_id, cliente_id, username, senha) values(4007, 3007, 'katia' , '1234');
+insert into comercio.cliente( cliente_id, nome, nif, data_nas, morada, localidade, contacto) values ( 3008, 'ana', 280001357, to_date( '28/09/1985', 'DD/MM/YYYY' ), 'Rua viatodos','Barcelos', 93615979);                              
+insert into comercio.c_cliente(conta_c_id, cliente_id, username, senha) values(4008, 3008, 'fana' , '1234');
+
+
+-------------
+insert into comercio.produtor( produtor_id, nome, morada, localidade,contacto, e_mail ) values ( 5001, 'Luís', 'Rua Lisboa', 'Vila Nova Gaia', 93644188, 'Luis.jj@gmail.com' );                        
 insert into comercio.c_produtor(conta_p_id, produtor_id, username, senha) values(6001, 5001, 'Luís' , '1237');
-insert into comercio.produtor( produtor_id, nome, morada, localidade,contacto, e_mail ) values ( 5002, 'Roberto', 'Rua Lisboa', 'Vila Nova Gaia', 93644188, 'Luis.jj@gmail.com' );                         
+insert into comercio.produtor( produtor_id, nome, morada, localidade,contacto, e_mail ) values ( 5002, 'Roberto', 'Rua Lisboa', 'Vila Nova Gaia', 93644188, 'robertojj@gmail.com' );                        
 insert into comercio.c_produtor(conta_p_id, produtor_id, username, senha) values(6002, 5002, 'roberto1' , '1237');
 
- -------------------------Produtos associado ao produtor--------------------------------------------
-insert into comercio.categoria( categoria_id, nome, detalhes ) values ( 1, 'vegetais', 'muito fresco' ); 
-insert into comercio.categoria( categoria_id, nome, detalhes ) values ( 2, 'frutas', 'fresco' ); 
-insert into comercio.categoria( categoria_id, nome) values ( 3, 'leguminosas e oleginosas'); 
-insert into comercio.categoria( categoria_id, nome ) values ( 4, 'doces' ); 
+insert into comercio.produtor( produtor_id, nome, morada, localidade,contacto, e_mail ) values ( 5003, 'Alberto', 'Rua 1º de maio', 'Setubal', 93644188, 'alberto@gmail.com' );                        
+insert into comercio.c_produtor(conta_p_id, produtor_id, username, senha) values(6003, 5003, 'João' , '1237');
+insert into comercio.produtor( produtor_id, nome, morada, localidade,contacto, e_mail ) values ( 5004, 'Rita', 'Rua miranda', 'Vila Real', 93644188, 'rita@gmail.com' );                        
+insert into comercio.c_produtor(conta_p_id, produtor_id, username, senha) values(6004, 5004, 'rita' , '1237');
+
+insert into comercio.categoria( categoria_id, nome, detalhes ) values ( 1, 'vegetais', 'muito fresco' );
+insert into comercio.categoria( categoria_id, nome, detalhes ) values ( 2, 'frutas', 'fresco' );
+insert into comercio.categoria( categoria_id, nome) values ( 3, 'queijos');
+insert into comercio.categoria( categoria_id, nome ) values ( 4, 'vegetais' );
+insert into comercio.categoria( categoria_id, nome) values ( 5, 'doces');
+insert into comercio.categoria( categoria_id, nome ) values ( 6, 'azeite' );
+insert into comercio.categoria( categoria_id, nome ) values ( 7, 'garrafeira' );
+insert into comercio.categoria( categoria_id, nome ) values ( 8, 'fumeiro e enchidos' );
 
 insert into comercio.produto( cod_prod, categoria_id,nome_prod, preco ) values ( 1, 1, 'couve', '9' );  
-insert into comercio.produto( cod_prod, categoria_id,nome_prod, preco ) values ( 2, 1, 'couve', '8' );  
+insert into comercio.produto( cod_prod, categoria_id,nome_prod, preco ) values ( 2, 1, 'Alface', '8' );
+insert into comercio.produto( cod_prod, categoria_id,nome_prod, preco ) values ( 3, 6, 'azeite virgem 75ml ', '5' );  
+insert into comercio.produto( cod_prod, categoria_id,nome_prod, preco ) values ( 4, 7, 'vinho 75ml', '7' );  
+insert into comercio.produto( cod_prod, categoria_id,nome_prod, preco ) values ( 5, 5, 'doce de abobora 1kg', '4' );  
+insert into comercio.produto( cod_prod, categoria_id,nome_prod, preco ) values ( 6, 2, 'morangos 0,5kg', '3' );  
 
-insert into comercio.valor( valor_id, cod_prod, preco ) values ( 01, 1, 9 ); 
-insert into comercio.valor( valor_id, cod_prod, preco ) values ( 02, 1, 8 ); 
 
-insert into comercio.entidade_associativa( produtor_id, cod_prod, qt, preco ) values ( 5001, 1, 20, 9 );   
-insert into comercio.entidade_associativa( produtor_id, cod_prod, qt, preco ) values ( 5002, 1, 20, 8 );
+insert into comercio.valor( valor_id, cod_prod, preco ) values ( 01, 1, 9 );
+insert into comercio.valor( valor_id, cod_prod, preco ) values ( 02, 1, 8 );
 
-insert into comercio.encomenda( cliente_id, encomenda_num, data_en, qtd, valor, detalhes ) values ( 3001, 0002, to_date( '29/01/2022', 'DD/MM/YYYY' ), 2, 9,'bom cliente' ); 
-insert into comercio.encomenda( cliente_id, encomenda_num, data_en, qtd, valor, detalhes ) values ( 3002, 0003, to_date( '29/01/2022', 'DD/MM/YYYY' ), 2, 9,'bom cliente' ); 
+insert into comercio.entidade_associativa( produtor_id, cod_prod, qt, preco ) values ( 5001, 1, 20, 9 );  
+insert into comercio.entidade_associativa( produtor_id, cod_prod, qt, preco ) values ( 5002, 1, 15, 8 );
+insert into comercio.entidade_associativa( produtor_id, cod_prod, qt, preco ) values ( 5003, 2, 20, 9 );  
+insert into comercio.entidade_associativa( produtor_id, cod_prod, qt, preco ) values ( 5002, 3, 15, 8 );
+insert into comercio.entidade_associativa( produtor_id, cod_prod, qt, preco ) values ( 5003, 4, 20, 9 );  
+insert into comercio.entidade_associativa( produtor_id, cod_prod, qt, preco ) values ( 5002, 5, 15, 8 );
+insert into comercio.entidade_associativa( produtor_id, cod_prod, qt, preco ) values ( 5003, 6, 20, 9 );  
+insert into comercio.entidade_associativa( produtor_id, cod_prod, qt, preco ) values ( 5002, 6, 3, 8 );
 
-insert into comercio.entidade_associativa2( encomenda_num, produtor_id, cod_prod, qt, preco ) values ( 0002, 5001,1,2, 9); 
-insert into comercio.entidade_associativa2( encomenda_num, produtor_id, cod_prod, qt, preco ) values ( 0003, 5002,1,2, 8); 
+insert into comercio.encomenda( cliente_id, encomenda_num, data_en, hora, qtd, valor, detalhes ) values ( 3001, 0002, to_date( '14/01/2022', 'DD/MM/YYYY' ), '12:00:00', 2, 9,'bom cliente' );
+insert into comercio.encomenda( cliente_id, encomenda_num, data_en, hora, qtd, valor, detalhes ) values ( 3002, 0003, to_date( '29/01/2022', 'DD/MM/YYYY' ), '06:00:00', 2, 9,'bom cliente' );
 
------------------------------------------------Encomenda-----------------------------------------------------
+insert into comercio.encomenda( cliente_id, encomenda_num, data_en, hora, qtd, valor, detalhes ) values ( 3004, 0004, to_date( '14/01/2022', 'DD/MM/YYYY' ), '12:00:00', 2, 9,'bom cliente' );
+insert into comercio.encomenda( cliente_id, encomenda_num, data_en, hora, qtd, valor, detalhes ) values ( 3005, 0001, to_date( '29/01/2022', 'DD/MM/YYYY' ), '06:00:00', 2, 9,'bom cliente' );
 
------------------------------------------------Pagamento--------------------------------------
+
+insert into comercio.entidade_associativa2( encomenda_num, produtor_id, cod_prod, qt, preco ) values ( 0002, 5001,1,2, 9);
+insert into comercio.entidade_associativa2( encomenda_num, produtor_id, cod_prod, qt, preco ) values ( 0003, 5002,1,2, 8);
+insert into comercio.entidade_associativa2( encomenda_num, produtor_id, cod_prod, qt, preco ) values ( 0001, 5002,2,3, 8);
+insert into comercio.entidade_associativa2( encomenda_num, produtor_id, cod_prod, qt, preco ) values ( 0004, 5003,4,2,8);
+
+
 insert into comercio.ordem_pagamento( ordem_pag_num, encomenda_num, valor, modo_pagamento) values ( 0011, 0002, 9, 'multibanco' );
 insert into comercio.ordem_pagamento( ordem_pag_num, encomenda_num, valor, modo_pagamento) values ( 0012, 0003, 8, 'multibanco' );
+insert into comercio.ordem_pagamento( ordem_pag_num, encomenda_num, valor, modo_pagamento) values ( 0013, 0004, 9, 'multibanco' );
+insert into comercio.ordem_pagamento( ordem_pag_num, encomenda_num, valor, modo_pagamento) values ( 0014, 0001, 8, 'multibanco' );
+insert into comercio.ordem_pagamento( ordem_pag_num, encomenda_num, valor, modo_pagamento) values ( 0015, 0001, 8, 'multibanco' );
 
 
----------------------------------------------------------------Envio--------------------------------------------
-insert into comercio.processo_envio_recolha( processo_num, admin_id, ordem_pag_num, estado ) values (0101,1001,0011, 'aguarda pagamento' );     
-insert into comercio.processo_envio_recolha( processo_num, admin_id, ordem_pag_num, estado ) values (0102,1001,0011, 'aguarda pagamento' ); 
+insert into comercio.processo_envio_recolha( processo_num, admin_id, ordem_pag_num, estado ) values (0101,1001,0011, 'aguarda pagamento' );    
+insert into comercio.processo_envio_recolha( processo_num, admin_id, ordem_pag_num, estado ) values (0102,1001,0012, 'aguarda pagamento' );
+insert into comercio.processo_envio_recolha( processo_num, admin_id, ordem_pag_num, estado ) values (0103,1001,0013, 'cancelado' );    
+insert into comercio.processo_envio_recolha( processo_num, admin_id, ordem_pag_num, estado ) values (0104,1001,0014, 'pago' );
 
-insert into comercio.fatura_recibo( fatura_num, ordem_pag_num, nome ) values ( 501, 0011, 'Carlos' );  
-insert into comercio.fatura_recibo( fatura_num, ordem_pag_num, nome ) values ( 502, 0011, 'Filipe' ); 
-
-                           
+insert into comercio.fatura_recibo( fatura_num, ordem_pag_num, nome ) values ( 501, 0011, '' );  
+insert into comercio.fatura_recibo( fatura_num, ordem_pag_num, nome ) values ( 502, 0012, '' );
+insert into comercio.fatura_recibo( fatura_num, ordem_pag_num, nome ) values ( 503, 0013, '' );  
+insert into comercio.fatura_recibo( fatura_num, ordem_pag_num, nome ) values ( 504, 0014, '' );

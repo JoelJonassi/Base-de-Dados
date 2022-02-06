@@ -58,7 +58,7 @@ create table comercio.cliente(
 	
 	create table comercio.categoria(
 		categoria_id int not null check( categoria_id > 0 ),
-		nome varchar(255) not null check(nome in('leguminosas e oleginosas', 'vegetais', 'frutas', 'doces' )),
+		nome varchar(255) not null check(nome in('fumeiro e enchidos', 'vegetais', 'frutas', 'doces', 'azeite', 'queijos', 'garrafeira' )),
 		detalhes varchar,
 		constraint catg_pk primary key( categoria_id ));
 	
